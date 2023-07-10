@@ -8,3 +8,10 @@ CREATE TABLE animals (
   neutered        BOOLEAN,
   weight_kg       DECIMAL(10, 2)
 );
+
+/* I altered the table to autogenerate the ID  
+
+ALTER TABLE animals
+ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY;
+
+*/
