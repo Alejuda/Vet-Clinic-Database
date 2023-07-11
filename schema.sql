@@ -9,9 +9,12 @@ CREATE TABLE animals (
   weight_kg       DECIMAL(10, 2)
 );
 
-/* I altered the table to autogenerate the ID  
+/* I altered the table to autogenerate the ID  */
 
 ALTER TABLE animals
 ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY;
 
-*/
+/* Add the Species Column  */
+
+ALTER TABLE animals
+ADD species VARCHAR(100);
