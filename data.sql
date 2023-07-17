@@ -102,6 +102,12 @@ VALUES
 
   INSERT INTO visits (animal_id, vet_id, date_of_visit) SELECT * FROM (SELECT id FROM animals) animal_ids, (SELECT id FROM vets) vets_ids, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
 
+DROP INDEX IF EXISTS idx_visits_animal_id;
+
+DROP INDEX IF EXISTS idx_visits_vet_id;
+
+DROP INDEX IF EXISTS idx_owners_email;
+
 EXPLAIN ANALYZE
 SELECT
   COUNT(*)
@@ -109,8 +115,6 @@ FROM
   visits
 WHERE
   animal_id = 4;
-
-DROP INDEX IF EXISTS idx_visits_animal_id;
 
 CREATE INDEX idx_visits_animal_id ON visits (animal_id);
 
@@ -130,7 +134,6 @@ FROM
 where
   vet_id = 2;
 
-DROP INDEX IF EXISTS idx_visits_vet_id;
 
 CREATE INDEX idx_visits_vet_id ON visits (vet_id);
 
@@ -151,8 +154,6 @@ FROM
   owners
 where
   email = 'owner_18327@mail.com';
-
-DROP INDEX IF EXISTS idx_owners_email;
 
 CREATE INDEX idx_owners_email ON owners (email ASC);
 
